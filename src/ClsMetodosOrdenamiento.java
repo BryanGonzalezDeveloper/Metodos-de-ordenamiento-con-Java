@@ -12,8 +12,10 @@ public class ClsMetodosOrdenamiento
 {
 	
 	 int[] datos;//Sera el arreglo utilizado en los metodos de ordenamiento
+	 int[]original;
 	long duracion;//Sera la variable que guarde la cantidad de segundos en las que se realizo el metodo
-	
+	long inicio;
+	long fin;
 	/**
 	 * Metodo que permite establecer el tamaño del arreglo.
 	 * @param cantidad es la cantidad de elementos que tendra el arreglo.
@@ -42,7 +44,8 @@ public class ClsMetodosOrdenamiento
 	 */
 	public int[] burbuja(int []arr)
 	{
-		long inicio=System.currentTimeMillis();
+		
+		 inicio=System.currentTimeMillis();
 		for (int i = arr.length-1; i>=0; i--) 
 		{
 			for (int j = 0; j<i ; j++) 
@@ -56,16 +59,44 @@ public class ClsMetodosOrdenamiento
 				}
 			}
 		}
-		long fin=System.currentTimeMillis();
+		 fin=System.currentTimeMillis();
 		duracion=fin-inicio;//Convierte la duracion del algoritmo que es devuelta en milisegundos a segundos.
 		return arr;
 	}
-	public DefaultListModel imprimir()
+	
+	public int[] seleccion(int []arr)
+	{
+		int menor=-1;
+		int aux1=0;
+		 inicio=System.currentTimeMillis();
+		for (int i = 0; i < arr.length; i++) 
+		{
+			
+			for (int j = arr.length-1; j>i; j--)
+			{
+				menor=arr[i];
+				if(menor>arr[j])
+				{
+					aux1=arr[j];
+					arr[j]=menor;
+					menor=aux1;
+					arr[i]=menor;
+				}
+			}
+			
+		}
+		 fin=System.currentTimeMillis();
+		duracion=fin-inicio;
+		return arr;
+	}
+	
+	
+	public DefaultListModel imprimir(int[] arr)
 	{
 		DefaultListModel listaDatos=new DefaultListModel<>();
-		for (int i = 0; i < datos.length; i++) 
+		for (int i = 0; i < arr.length; i++) 
 		{
-			listaDatos.addElement(datos[i]);
+			listaDatos.addElement(arr[i]);
 		}
 		return listaDatos;
 	}

@@ -39,24 +39,20 @@ public class Gui_metodosOrdenamiento extends JFrame {
 	 */
 	public Gui_metodosOrdenamiento() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 747, 470);
+		setBounds(100, 100, 886, 470);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Cantidad:");
-		lblNewLabel.setBounds(10, 11, 74, 14);
+		JLabel lblNewLabel = new JLabel("Define la cantidad de elementos en el arreglo:");
+		lblNewLabel.setBounds(10, 11, 251, 14);
 		contentPane.add(lblNewLabel);
 		
 		txtCantidad = new JTextField();
-		txtCantidad.setBounds(71, 8, 142, 17);
+		txtCantidad.setBounds(254, 9, 142, 17);
 		contentPane.add(txtCantidad);
 		txtCantidad.setColumns(10);
-		
-		JLabel lblBurbuja = new JLabel("BURBUJA");
-		lblBurbuja.setBounds(51, 54, 74, 14);
-		contentPane.add(lblBurbuja);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(31, 79, 115, 313);
@@ -64,26 +60,79 @@ public class Gui_metodosOrdenamiento extends JFrame {
 		
 		JList listBurbuja = new JList();
 		scrollPane.setViewportView(listBurbuja);
-		
 		JLabel lblTiempoBurbuja = new JLabel("DURACION:");
-		lblTiempoBurbuja.setBounds(31, 403, 115, 14);
+		lblTiempoBurbuja.setBounds(31, 403, 115, 28);
 		contentPane.add(lblTiempoBurbuja);
 		
-		JButton btnNewButton = new JButton("Aplicar algoritmo");
-		btnNewButton.addActionListener(new ActionListener() {
+		
+		JButton btnBurbuja = new JButton("Burbuja");
+		
+		btnBurbuja.addActionListener(new ActionListener()
+		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				//int[] prueba= {15,67,8,16,44,27,12,35};
-				//objOrdenamiento.datos=objOrdenamiento.burbuja(prueba);
+				//INSTRUCCIONES PARA MOSTRAR EL ORDENAMIENTO UTILIZANDO EL ALGORITMO BURBUJA
 				
-				objOrdenamiento.generarDatos(Integer.parseInt(txtCantidad.getText()));
-				objOrdenamiento.burbuja(objOrdenamiento.llenarArreglo());
-				listBurbuja.setModel(objOrdenamiento.imprimir());
+				int[] arr=objOrdenamiento.burbuja(objOrdenamiento.datos.clone());
+				listBurbuja.setModel(objOrdenamiento.imprimir(arr));
 				lblTiempoBurbuja.setText("Duracion: "+objOrdenamiento.getDuracion()+" ms");
 			}
-			
 		});
-		btnNewButton.setBounds(228, 7, 163, 23);
-		contentPane.add(btnNewButton);
+		
+		scrollPane.setColumnHeaderView(btnBurbuja);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(254, 79, 108, 313);
+		contentPane.add(scrollPane_1);
+		
+		JList listSeleccion = new JList();
+		scrollPane_1.setViewportView(listSeleccion);
+		
+		
+		
+		JLabel lblTiempoSeleccion = new JLabel("DURACION:");
+		lblTiempoSeleccion.setBounds(247, 403, 115, 28);
+		contentPane.add(lblTiempoSeleccion);
+		
+		JButton btnSeleccion = new JButton("Seleccion");
+		btnSeleccion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				//INSTRUCCIONES PARA MOSTRAR EL ORDENAMIENTO UTILIZANDO EL ALGORITMO DE SELECCION
+				
+			int[]arr=	objOrdenamiento.seleccion(objOrdenamiento.datos.clone());
+				listSeleccion.setModel(objOrdenamiento.imprimir(arr));
+				lblTiempoSeleccion.setText("Duracion: "+objOrdenamiento.getDuracion()+" ms");
+			}
+		});
+		scrollPane_1.setColumnHeaderView(btnSeleccion);
+		
+		JLabel lblNewLabel_1 = new JLabel("SELECCIONA UN ALGORITMO DE ORDENAMIENTO:");
+		lblNewLabel_1.setBounds(209, 39, 292, 14);
+		contentPane.add(lblNewLabel_1);
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(736, 93, 91, 327);
+		contentPane.add(scrollPane_2);
+		JList listOriginal = new JList();
+		scrollPane_2.setViewportView(listOriginal);
+		JButton btnGenerar = new JButton("Generar arreglo");
+		
+		btnGenerar.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				objOrdenamiento.generarDatos(Integer.parseInt(txtCantidad.getText()));
+			listOriginal.setModel(objOrdenamiento.imprimir(objOrdenamiento.llenarArreglo()));
+			}
+		});
+		btnGenerar.setBounds(403, 9, 142, 18);
+		contentPane.add(btnGenerar);
+		
+		
+		
+	
+		JLabel lblNewLabel_2 = new JLabel("Arreglo Original");
+		lblNewLabel_2.setBounds(736, 68, 108, 14);
+		contentPane.add(lblNewLabel_2);
 	}
 }
