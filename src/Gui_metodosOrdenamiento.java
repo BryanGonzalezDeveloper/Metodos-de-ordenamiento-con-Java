@@ -46,11 +46,11 @@ public class Gui_metodosOrdenamiento extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Define la cantidad de elementos en el arreglo:");
-		lblNewLabel.setBounds(10, 11, 251, 14);
+		lblNewLabel.setBounds(10, 11, 297, 14);
 		contentPane.add(lblNewLabel);
 		
 		txtCantidad = new JTextField();
-		txtCantidad.setBounds(254, 9, 142, 17);
+		txtCantidad.setBounds(338, 9, 142, 17);
 		contentPane.add(txtCantidad);
 		txtCantidad.setColumns(10);
 		
@@ -75,14 +75,14 @@ public class Gui_metodosOrdenamiento extends JFrame {
 				
 				int[] arr=objOrdenamiento.burbuja(objOrdenamiento.datos.clone());
 				listBurbuja.setModel(objOrdenamiento.imprimir(arr));
-				lblTiempoBurbuja.setText("Duracion: "+objOrdenamiento.getDuracion()+" ms");
+				lblTiempoBurbuja.setText(objOrdenamiento.getDuracion()+" ms");
 			}
 		});
 		
 		scrollPane.setColumnHeaderView(btnBurbuja);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(254, 79, 108, 313);
+		scrollPane_1.setBounds(192, 79, 115, 313);
 		contentPane.add(scrollPane_1);
 		
 		JList listSeleccion = new JList();
@@ -91,7 +91,7 @@ public class Gui_metodosOrdenamiento extends JFrame {
 		
 		
 		JLabel lblTiempoSeleccion = new JLabel("DURACION:");
-		lblTiempoSeleccion.setBounds(247, 403, 115, 28);
+		lblTiempoSeleccion.setBounds(192, 403, 115, 28);
 		contentPane.add(lblTiempoSeleccion);
 		
 		JButton btnSeleccion = new JButton("Seleccion");
@@ -102,7 +102,7 @@ public class Gui_metodosOrdenamiento extends JFrame {
 				
 			int[]arr=	objOrdenamiento.seleccion(objOrdenamiento.datos.clone());
 				listSeleccion.setModel(objOrdenamiento.imprimir(arr));
-				lblTiempoSeleccion.setText("Duracion: "+objOrdenamiento.getDuracion()+" ms");
+				lblTiempoSeleccion.setText(objOrdenamiento.getDuracion()+" ms");
 			}
 		});
 		scrollPane_1.setColumnHeaderView(btnSeleccion);
@@ -111,7 +111,7 @@ public class Gui_metodosOrdenamiento extends JFrame {
 		lblNewLabel_1.setBounds(209, 39, 292, 14);
 		contentPane.add(lblNewLabel_1);
 		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(736, 93, 91, 327);
+		scrollPane_2.setBounds(738, 82, 91, 327);
 		contentPane.add(scrollPane_2);
 		JList listOriginal = new JList();
 		scrollPane_2.setViewportView(listOriginal);
@@ -125,14 +125,40 @@ public class Gui_metodosOrdenamiento extends JFrame {
 			listOriginal.setModel(objOrdenamiento.imprimir(objOrdenamiento.llenarArreglo()));
 			}
 		});
-		btnGenerar.setBounds(403, 9, 142, 18);
+		btnGenerar.setBounds(490, 9, 142, 18);
 		contentPane.add(btnGenerar);
 		
 		
 		
 	
 		JLabel lblNewLabel_2 = new JLabel("Arreglo Original");
-		lblNewLabel_2.setBounds(736, 68, 108, 14);
+		lblNewLabel_2.setBounds(736, 39, 108, 14);
 		contentPane.add(lblNewLabel_2);
+		
+		JScrollPane scrollPane_3 = new JScrollPane();
+		scrollPane_3.setBounds(341, 79, 115, 313);
+		contentPane.add(scrollPane_3);
+		JLabel lblTiempoInsercion = new JLabel("DURACION:");
+		lblTiempoInsercion.setBounds(341, 403, 115, 28);
+		contentPane.add(lblTiempoInsercion);
+		JList listInsercion = new JList();
+		scrollPane_3.setViewportView(listInsercion);
+		
+		JButton btnInsercion = new JButton("Insercion");
+		btnInsercion.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				//INSTRUCCIONES PARA MOSTRAR EL ORDENAMIENTO UTILIZANDO EL ALGORITMO DE INSERCION.
+				
+				int[]arr=	objOrdenamiento.insercionDirecta(objOrdenamiento.datos.clone());
+					listInsercion.setModel(objOrdenamiento.imprimir(arr));
+					lblTiempoInsercion.setText(objOrdenamiento.getDuracion()+" ms");
+			}
+		});
+		
+		scrollPane_3.setColumnHeaderView(btnInsercion);
+		
+		
 	}
 }

@@ -90,6 +90,32 @@ public class ClsMetodosOrdenamiento
 		return arr;
 	}
 	
+	/**
+	 * Metodo que ordena un arreglo de numeros enteros<br>utilizando el metodo de insercion directa.
+	 * @param arr es el arreglo que se debe ordenar
+	 * @return arreglo ordenado.
+	 */
+	public int[] insercionDirecta(int[] arr)
+	{
+		int aux=-1;
+		int j=-1;
+		inicio=System.currentTimeMillis();
+		for(int i=1; i<arr.length;i++)
+		{
+			aux=arr[i];
+			j=i-1;
+			while(j>=0 && aux<arr[j])
+			{
+				arr[j+1]=arr[j];
+				j--;
+			}
+			arr[j+1]=aux;
+		}
+		fin=System.currentTimeMillis();
+		duracion=fin-inicio;
+		return arr;
+	}
+	
 	
 	public DefaultListModel imprimir(int[] arr)
 	{
