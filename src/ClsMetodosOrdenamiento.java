@@ -116,6 +116,42 @@ public class ClsMetodosOrdenamiento
 		return arr;
 	}
 	
+	/**
+	 * Metodo que ordena un arreglo de numeros enteros implementando el metodo shellSort.
+	 * @param arr es el arreglo que se quiere ordenar.
+	 * @return arreglo ordenado
+	 */
+	public  int[] shellSort(int[] arr)
+	{
+		int k, j, aux;
+		int i = 1;
+		inicio=System.currentTimeMillis();
+		while (i <= arr.length) 
+		{
+			i = i * 2 + 1;
+		}
+		while (i > 0)
+		{
+			for (j = i; j < arr.length; j++)
+			{
+				aux = arr[j];
+				k = j;
+
+				while (k > i - 1 && arr[k - i] >= aux)
+				{
+					arr[k] = arr[k - i];
+					k -= i;
+				}
+				arr[k] = aux;
+			}
+			i = (i - 1) / 2;
+
+		}
+		fin=System.currentTimeMillis();
+		duracion=fin-inicio;
+		return arr;
+	}
+	
 	
 	public DefaultListModel imprimir(int[] arr)
 	{

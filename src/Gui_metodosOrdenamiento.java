@@ -159,6 +159,31 @@ public class Gui_metodosOrdenamiento extends JFrame {
 		
 		scrollPane_3.setColumnHeaderView(btnInsercion);
 		
+		JScrollPane scrollPane_4 = new JScrollPane();
+		scrollPane_4.setBounds(506, 79, 115, 313);
+		contentPane.add(scrollPane_4);
+		
+		JLabel lblTiempoShell = new JLabel("DURACION:");
+		lblTiempoShell.setBounds(506, 403, 115, 28);
+		contentPane.add(lblTiempoShell);
+		
+		JList listShellSort = new JList();
+		scrollPane_4.setViewportView(listShellSort);
+		
+		JButton btnShell = new JButton("Shell sort");
+		btnShell.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+	//INSTRUCCIONES PARA MOSTRAR EL ORDENAMIENTO UTILIZANDO EL ALGORITMO DE SHELL SORT.
+				
+				int[]arr=	objOrdenamiento.shellSort(objOrdenamiento.datos.clone());
+					listShellSort.setModel(objOrdenamiento.imprimir(arr));
+					lblTiempoShell.setText(objOrdenamiento.getDuracion()+" ms");
+			}
+		});
+		scrollPane_4.setColumnHeaderView(btnShell);
+		
+	
+		
 		
 	}
 }
