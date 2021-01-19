@@ -151,6 +151,109 @@ public class ClsMetodosOrdenamiento
 		duracion=fin-inicio;
 		return arr;
 	}
+	/**
+	 * Metodo para ordenar un arreglo por medio de QuickSort.
+	 * @param arr es el arreglo a ordenar.
+	 * @param primero el indice de la primera posicion.
+	 * @param ultimo indice de la ultima posicion.
+	 * @return arreglo ordenado.
+	 */
+	 public  int[] Quicksort(int arr[], int primero, int ultimo)
+	    {
+	            /*Este metodo recibe un arreglo de numero, y dos enteros que referencian el primer valor
+	            Y el ultimo*/
+	        
+	            //Se toma como pivote el primer valor
+	            int pivote = arr[primero];
+	            
+	            //Se definen los dos lados y un auxiliar
+	            int i = primero; 
+	            int j = ultimo; 
+	            int aux;
+	           
+	            while(i<j)
+	            {
+	               while (arr[i] <= pivote && i < j) 
+	                  i++;
+
+	               while (arr[j] > pivote) 
+	                  j--;   
+
+	               if (i<j) 
+	               {                                     
+	                   aux = arr[i];                  
+	                   arr[i]= arr[j];
+	                   arr[j]=aux;
+	               }
+	            }
+
+	             arr[primero] = arr[j]; 
+	             arr[j] = pivote;
+
+	             if (primero < j-1)
+	                Quicksort(arr,primero,j-1);
+
+	             if (j+1 < ultimo)
+	                Quicksort(arr,j+1,ultimo);
+	             return arr;
+	      }
+	 
+	 /**
+	  * Busca un elemento en un arreglo de manera secuencial.
+	  * @param arr es el arreglo donde se debe buscar el elemento.
+	  * @param numero es el elemento que debe ser buscado.
+	  * @return <strong>True</strong> si el elemento se encuentra en el arreglo.<br><strong>False</strong> en caso contrario.
+	  */
+	public boolean busquedaSecuencial(int[] arr,int numero)
+	{
+		boolean encontrado=false;
+		 inicio=System.currentTimeMillis();
+		for (int i = 0; i < arr.length; i++)
+		{
+			if(arr[i]==numero)
+			{
+				encontrado=true;
+				break;
+			}
+		}
+		fin=System.currentTimeMillis();
+		duracion=fin-inicio;
+		
+		return encontrado;
+	}
+	/**
+	  * Busca un elemento en un arreglo utilizando busqueda binaria.
+	  * @param arr es el arreglo donde se debe buscar el elemento.
+	  * @param numero es el elemento que debe ser buscado.
+	  * @return <strong>True</strong> si el elemento se encuentra en el arreglo.<br><strong>False</strong> en caso contrario.
+	  */
+	public boolean busquedaBinaria(int[]arr, int numero)
+	{
+		int superior=arr.length-1;
+		int inferior=0;
+		int medio=(int)(superior+inferior)/2;
+		boolean encontrado=false;
+		inicio=System.currentTimeMillis();
+		while(!(inferior>superior))
+		{
+		
+			if(numero>arr[medio])
+				inferior=medio+1;
+			else if(numero<arr[medio])
+				superior=medio-1;
+			else if(numero==arr[medio])
+			{
+				encontrado=true;
+				break;
+			}
+			medio=(int)(superior+inferior)/2;
+				
+		}
+		fin=System.currentTimeMillis();
+		duracion=fin-inicio;
+		
+		return encontrado;
+	}
 	
 	
 	public DefaultListModel imprimir(int[] arr)
